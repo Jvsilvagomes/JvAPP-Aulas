@@ -33,6 +33,20 @@ export default function TabsLayout() {
           headerTitle: "Conteúdo",
         }}
       />
+      <Tabs.Screen
+        name="jogos"
+        options={{
+          title: "Jogos",
+          headerTitle: "Jogos",
+        }}
+      />
+      <Tabs.Screen
+        name="post"
+        options={{
+          title: "Post",
+          headerTitle: "Post",
+        }}
+      />
     </Tabs>
   );
 }
