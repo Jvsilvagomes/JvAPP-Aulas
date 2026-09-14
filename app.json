@@ -4,7 +4,8 @@
     "slug": "jvapp",
     "scheme": "jvapp",
     "plugins": [
-      "expo-router"
+      "expo-router",
+      "expo-status-bar"
     ],
     "experiments": {
       "typedRoutes": true

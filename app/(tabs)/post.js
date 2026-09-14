@@ -11,7 +11,7 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import axios from "axios";
 
-const API_KEY = "cv_4Wzbmq_cSP52WLG8CRjj1ipOGbM4G0kFgT-e39euq91PKudf84jTsW3omAWsBsIO";
+const API_KEY = "cv_BdaIYmbsv9fmLguTB5L0eZ2o28n-e_pZZ-h1dPTqpGHfN2VTTjPu39xsJYABsz92";
 
 const api = axios.create({
   baseURL: "https://api-ds.codeverse.dev.br",
@@ -24,7 +24,9 @@ export default function JogosCriarScreen() {
   const [titulo, setTitulo] = useState("");
   const [descricao, setDescricao] = useState("");
   const [imagemUrl, setImagemUrl] = useState("");
-  const [estudio, setEstudio] = useState("");
+  const [estudio, setEstudio] = useState(""
+    
+  );
   const [plataforma, setPlataforma] = useState("");
   const [genero, setGenero] = useState("");
 
