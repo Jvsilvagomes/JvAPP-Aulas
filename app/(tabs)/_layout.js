@@ -47,6 +47,20 @@ export default function TabsLayout() {
           headerTitle: "Delete",
         }}
       />
+      <Tabs.Screen
+        name="put"
+        options={{
+          title: "Put",
+          headerTitle: "Put",
+        }}
+      />
+      <Tabs.Screen
+        name="getById"
+        options={{
+          title: "GetById",
+          headerTitle: "GetById",
+        }}
+      />
     </Tabs>
   );
 }
