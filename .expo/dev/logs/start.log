@@ -387,3 +387,6 @@
 {"_e":"metro:bundling:progress","_t":1790007508383,"id":"1","progress":0.999,"total":1417,"current":1417}
 {"_e":"metro:bundling:done","_t":1790007508680,"id":"1","total":1417,"ms":24923.6352}
 {"_e":"metro:server_log","_t":1790009051531,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.exponent","SM-A156M - 16 - API 36","60"]}
+{"_e":"metro:bundling:started","_t":1790009259072,"id":"4","platform":"android","environment":null,"entry":"node_modules\\expo-router\\entry.js"}
+{"_e":"metro:bundling:progress","_t":1790009259072,"id":"4","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:done","_t":1790009259101,"id":"4","total":1,"ms":29.4098}
