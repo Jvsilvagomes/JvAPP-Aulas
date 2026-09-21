@@ -96,7 +96,7 @@ return (
               <View style={styles.info}>
                 <Text style={styles.titulo}>{item.title}</Text>
                 <Text style={styles.categoria}>
-                  {item.universo} · {item.poder}
+                  {item.genero} · {item.plataforma} · {item.ano_lancamento}
                 </Text>
               </View>
               <Pressable

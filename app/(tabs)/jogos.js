@@ -55,7 +55,7 @@ export default function JogosListarScreen() {
                             <View style={styles.info}>
                                 <Text style={styles.titulo}>{jogo.title}</Text>
                                 <Text style={styles.categoria}>
-                                    {jogo.category} · {jogo.year}
+                                    {jogo.genero} · {jogo.plataforma} · {jogo.ano_lancamento}
                                 </Text>
                             </View>
                         </View>

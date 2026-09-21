@@ -39,11 +39,11 @@ export default function JogosEditarScreen() {
   const [selecionado, setSelecionado] = useState(null);
 
   const [titulo, setTitulo] = useState("");
-  const [descricao, setDescricao] = useState("");
   const [imagemUrl, setImagemUrl] = useState("");
-  const [estudio, setEstudio] = useState("");
+  const [desenvolvedora, setDesenvolvedora] = useState("");
   const [plataforma, setPlataforma] = useState("");
   const [genero, setGenero] = useState("");
+  const [anoLancamento, setAnoLancamento] = useState("");
   const [salvando, setSalvando] = useState(false);
 
   async function buscarJogos() {
@@ -68,17 +68,43 @@ export default function JogosEditarScreen() {
   function selecionarJogo(jogo) {
     setSelecionado(jogo);
     setTitulo(jogo.title ?? "");
-    setDescricao(jogo.description ?? "");
     setImagemUrl(jogo.imageUrl ?? "");
-    setEstudio(jogo.estudio ?? "");
+    setDesenvolvedora(jogo.desenvolvedora ?? "");
     setPlataforma(jogo.plataforma ?? "");
     setGenero(jogo.genero ?? "");
+    setAnoLancamento(String(jogo.ano_lancamento ?? ""));
   }
 
   async function salvarEdicao() {
     if (!selecionado) return;
-    if (!titulo) {
-      Alert.alert("Preencha pelo menos o título.");
+    const tituloNormalizado = titulo.trim();
+    const imagemUrlNormalizada = imagemUrl.trim();
+    const desenvolvedoraNormalizada = desenvolvedora.trim();
+    const plataformaNormalizada = plataforma.trim();
+    const generoNormalizado = genero.trim();
+    const anoLancamentoNormalizado = anoLancamento.trim();
+
+    if (tituloNormalizado.length < 3 || tituloNormalizado.length > 120) {
+      Alert.alert("O título deve ter entre 3 e 120 caracteres.");
+      return;
+    }
+
+    if (imagemUrlNormalizada) {
+      try {
+        new URL(imagemUrlNormalizada);
+      } catch {
+        Alert.alert("Informe uma URL de imagem válida ou deixe o campo vazio.");
+        return;
+      }
+    }
+
+    if (!generoNormalizado || !plataformaNormalizada || !desenvolvedoraNormalizada) {
+      Alert.alert("Gênero, plataforma e desenvolvedora são obrigatórios.");
+      return;
+    }
+
+    if (!anoLancamentoNormalizado || !Number.isFinite(Number(anoLancamentoNormalizado))) {
+      Alert.alert("O ano de lançamento deve ser numérico.");
       return;
     }
 
@@ -87,12 +113,12 @@ export default function JogosEditarScreen() {
       // PUT substitui o registro inteiro — mandamos todos os campos de
       // novo. O id vai na URL, não no corpo.
       const resposta = await api.put(`/api/jogos/${selecionado.id}`, {
-        title: titulo,
-        description: descricao,
-        imageUrl: imagemUrl,
-        estudio,
-        plataforma,
-        genero,
+        title: tituloNormalizado,
+        imageUrl: imagemUrlNormalizada || null,
+        genero: generoNormalizado,
+        plataforma: plataformaNormalizada,
+        ano_lancamento: Number(anoLancamentoNormalizado),
+        desenvolvedora: desenvolvedoraNormalizada,
       });
 
       // Esta API devolve o registro atualizado dentro de "data".
@@ -149,14 +175,6 @@ export default function JogosEditarScreen() {
               placeholder="Ex: Batman"
             />
 
-            <Text style={styles.rotulo}>Descrição</Text>
-            <TextInput
-              style={styles.campo}
-              value={descricao}
-              onChangeText={setDescricao}
-              placeholder="Ex: Jogo de corrida de carros"
-            />
-
             <Text style={styles.rotulo}>URL da imagem</Text>
             <TextInput
               style={styles.campo}
@@ -165,11 +183,11 @@ export default function JogosEditarScreen() {
               placeholder="Ex: https://exemplo.com/jogoCorrida.jpg"
             />
 
-            <Text style={styles.rotulo}>Estúdio</Text>
+            <Text style={styles.rotulo}>Desenvolvedora</Text>
             <TextInput
               style={styles.campo}
-              value={estudio}
-              onChangeText={setEstudio}
+              value={desenvolvedora}
+              onChangeText={setDesenvolvedora}
               placeholder="Ex: Ubisoft"
             />
 
@@ -187,6 +205,15 @@ export default function JogosEditarScreen() {
               value={plataforma}
               onChangeText={setPlataforma}
               placeholder="Ex: PlayStation 5"
+            />
+
+            <Text style={styles.rotulo}>Ano de lançamento</Text>
+            <TextInput
+              style={styles.campo}
+              value={anoLancamento}
+              onChangeText={setAnoLancamento}
+              placeholder="Ex: 2024"
+              keyboardType="numeric"
             />
 
             <Pressable style={styles.botao} onPress={salvarEdicao} disabled={salvando}>

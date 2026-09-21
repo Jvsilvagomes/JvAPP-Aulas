@@ -100,9 +100,9 @@ export default function JogosBuscarScreen() {
             <View style={styles.info}>
               <Text style={styles.titulo}>{jogo.title}</Text>
               <Text style={styles.categoria}>
-                {jogo.genero} · {jogo.plataforma}
+                {jogo.genero} · {jogo.plataforma} · {jogo.ano_lancamento}
               </Text>
-              <Text style={styles.fraqueza}>Estúdio: {jogo.estudio}</Text>
+              <Text style={styles.fraqueza}>Desenvolvedora: {jogo.desenvolvedora}</Text>
             </View>
           </View>
         )}
